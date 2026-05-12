@@ -556,6 +556,18 @@ export const PROVIDER_MODELS = {
     { id: "grok-4.1-thinking", name: "Grok 4.1 Thinking" },
     { id: "grok-4.2", name: "Grok 4.2 (4.20 Beta)" },
   ],
+  "deepseek-web": [
+    { id: "deepseek-v4-flash", name: "DeepSeek V4 Flash" },
+    { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro" },
+    { id: "deepseek-v4-flash-search", name: "DeepSeek V4 Flash Search" },
+    { id: "deepseek-v4-pro-search", name: "DeepSeek V4 Pro Search" },
+    { id: "deepseek-v4-vision", name: "DeepSeek V4 Vision" },
+    { id: "deepseek-v4-flash-nothinking", name: "DeepSeek V4 Flash (No Thinking)" },
+    { id: "deepseek-v4-pro-nothinking", name: "DeepSeek V4 Pro (No Thinking)" },
+    { id: "deepseek-v4-flash-search-nothinking", name: "DeepSeek V4 Flash Search (No Thinking)" },
+    { id: "deepseek-v4-pro-search-nothinking", name: "DeepSeek V4 Pro Search (No Thinking)" },
+    { id: "deepseek-v4-vision-nothinking", name: "DeepSeek V4 Vision (No Thinking)" },
+  ],
   "perplexity-web": [
     { id: "pplx-auto", name: "Perplexity Auto (Free)" },
     { id: "pplx-sonar", name: "Perplexity Sonar" },

@@ -365,6 +365,11 @@ export const PROVIDERS = {
     format: "grok-web",
     authType: "cookie"
   },
+  "deepseek-web": {
+    baseUrl: "https://chat.deepseek.com/api/v0/chat/completion",
+    format: "openai",
+    authType: "cookie"
+  },
   "perplexity-web": {
     baseUrl: "https://www.perplexity.ai/rest/sse/perplexity_ask",
     format: "perplexity-web",

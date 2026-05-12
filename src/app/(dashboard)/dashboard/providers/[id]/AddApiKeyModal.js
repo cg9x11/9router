@@ -10,7 +10,7 @@ export default function AddApiKeyModal({ isOpen, provider, providerName, isCompa
   const isCookie = authType === "cookie";
   const credentialLabel = isCookie ? "Cookie Value" : "API Key";
   const credentialPlaceholder = isCookie
-    ? (provider === "grok-web" ? "sso=xxxxx... or just the raw value" : "eyJhbGciOi...")
+    ? (provider === "grok-web" ? "sso=xxxxx... or just the raw value" : provider === "deepseek-web" ? "Bearer ds-xxxxx... or just the raw token" : "eyJhbGciOi...")
     : "";
 
   const isAzure = provider === "azure";

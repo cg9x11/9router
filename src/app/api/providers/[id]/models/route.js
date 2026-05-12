@@ -435,6 +435,14 @@ export async function GET(request, { params }) {
       });
     }
 
+    if (["grok-web", "deepseek-web", "perplexity-web"].includes(connection.provider)) {
+      return NextResponse.json({
+        provider: connection.provider,
+        connectionId: connection.id,
+        models: [],
+      });
+    }
+
     const config = PROVIDER_MODELS_CONFIG[connection.provider];
     if (!config) {
       return NextResponse.json(

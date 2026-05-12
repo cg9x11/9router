@@ -573,6 +573,26 @@ async function testApiKeyConnection(connection, effectiveProxy = null) {
         const valid = res.status !== 401 && res.status !== 403;
         return { valid, error: valid ? null : "Invalid SSO cookie" };
       }
+      case "deepseek-web": {
+        let token = connection.apiKey;
+        if (/^Bearer\s+/i.test(token)) token = token.replace(/^Bearer\s+/i, "").trim();
+        const res = await fetchWithConnectionProxy("https://chat.deepseek.com/api/v0/chat_session/create", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "accept-charset": "UTF-8",
+            "User-Agent": "DeepSeek/2.0.4 Android/35",
+            "x-client-platform": "android",
+            "x-client-version": "2.0.4",
+            "x-client-locale": "zh_CN",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ agent: "chat" }),
+        }, effectiveProxy);
+        const valid = res.status !== 401 && res.status !== 403;
+        return { valid, error: valid ? null : "Invalid DeepSeek web token" };
+      }
       case "perplexity-web": {
         let sessionToken = connection.apiKey;
         if (sessionToken.startsWith("__Secure-next-auth.session-token=")) sessionToken = sessionToken.slice("__Secure-next-auth.session-token=".length);

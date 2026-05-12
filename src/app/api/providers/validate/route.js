@@ -548,6 +548,33 @@ export async function POST(request) {
           break;
         }
 
+        case "deepseek-web": {
+          let token = apiKey.trim();
+          if (/^Bearer\s+/i.test(token)) token = token.replace(/^Bearer\s+/i, "").trim();
+          const res = await fetch("https://chat.deepseek.com/api/v0/chat_session/create", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "accept-charset": "UTF-8",
+              "User-Agent": "DeepSeek/2.0.4 Android/35",
+              "x-client-platform": "android",
+              "x-client-version": "2.0.4",
+              "x-client-locale": "zh_CN",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ agent: "chat" }),
+          });
+          if (res.status === 401 || res.status === 403) {
+            isValid = false;
+            error = "Invalid DeepSeek web token — paste the web/app bearer token, not platform API key";
+          } else {
+            isValid = res.ok;
+            if (!isValid) error = `DeepSeek Web returned HTTP ${res.status}`;
+          }
+          break;
+        }
+
         case "perplexity-web": {
           let sessionToken = apiKey;
           if (sessionToken.startsWith("__Secure-next-auth.session-token=")) {
