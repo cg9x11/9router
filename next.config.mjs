@@ -7,6 +7,11 @@ const nextConfig = {
   },
   env: {},
   webpack: (config, { isServer }) => {
+    // Production Docker builds on small disks can fail with ENOSPC when
+    // webpack persistent filesystem cache writes large pack files.
+    // Disable webpack cache here; runtime performance is unaffected.
+    config.cache = false;
+
     // Ignore fs/path modules in browser bundle
     if (!isServer) {
       config.resolve.fallback = {
